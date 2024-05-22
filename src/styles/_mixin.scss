@@ -1,0 +1,16 @@
+// Skeleton
+@mixin skeleton {
+  opacity: 0.6;
+  cursor: progress;
+
+  animation: skeleton-animation 1s linear infinite alternate;
+}
+
+@keyframes skeleton-animation {
+  0% {
+    background-color: hsl(0, 0%, 95%);
+  }
+  100% {
+    background-color: hsl(0, 0%, 80%);
+  }
+}
