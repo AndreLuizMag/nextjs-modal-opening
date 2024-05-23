@@ -1,17 +1,9 @@
-import { FC, Suspense } from "react";
-import Loading from "./loading";
-import { PokemonList, PokemonListResults } from "@/type/pokemon";
-import { Pokemon } from "@/components/Pokemon";
-import { fetchPokemons } from "@/lib/fetchPokeList";
+import { Suspense } from "react";
 import { PokeList } from "@/components/PokeList";
-
-const fetchData = async () => {
-  const pokemonList = await fetchPokemons();
-  return pokemonList;
-};
+import Loading from "./loading";
+import { GetPokemons } from "@/components/GetPokemons";
 
 const Home = async () => {
-  const pokemonList = await fetchData();
   return (
     <main>
       <section className="p-block-16">
@@ -23,12 +15,8 @@ const Home = async () => {
         <div className="container-md ds-flex flow-col-nw gap-md">
           <h2>List Pokemons</h2>
           <PokeList.List>
-            <Suspense fallback={<PokeList.Skeleton />}>
-              {pokemonList.results.map((pokemon: PokemonListResults) => (
-                <PokeList.Item key={pokemon.name} href={`/${pokemon.name}`}>
-                  {pokemon.name}
-                </PokeList.Item>
-              ))}
+            <Suspense fallback={<Loading />}>
+              <GetPokemons />
             </Suspense>
           </PokeList.List>
         </div>

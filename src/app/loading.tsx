@@ -1,6 +1,5 @@
-const Loading = () => {
-  // You can add any UI inside Loading, including a Skeleton.
-  return "Carregando...";
-};
+import { PokeList } from "@/components/PokeList";
 
-export default Loading;
+export default function Loading() {
+  return <PokeList.Skeleton />;
+}

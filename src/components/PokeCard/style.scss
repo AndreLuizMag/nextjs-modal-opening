@@ -1,5 +1,28 @@
+@import "../../styles/mixin";
+
 .pokecard {
   background-color: white;
   max-width: 500px;
   color: black;
+
+  &__image {
+    background-color: #f4f4f4;
+  }
+
+  &__skeleton {
+    &__image,
+    &__item {
+      @include skeleton;
+    }
+
+    &__image {
+      width: 100%;
+      height: 10rem;
+    }
+
+    &__item {
+      width: 4rem;
+      height: 1.375rem;
+    }
+  }
 }

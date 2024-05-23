@@ -5,5 +5,9 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Card: FC<CardProps> = ({ children }) => {
-  return <div className="pokecard width-100 p-10 radius-lg">{children}</div>;
+  return (
+    <div className="pokecard width-100 ds-flex flow-col-nw gap-md p-10 radius-lg">
+      {children}
+    </div>
+  );
 };

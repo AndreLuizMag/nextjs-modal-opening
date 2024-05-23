@@ -1,10 +1,8 @@
-import { notFound } from "next/navigation";
-import { fetchPokemonDetails } from "@/lib/fetchPokemon";
-import { Pokemon } from "@/type/pokemon";
 import Modal from "@/components/Modal";
 import { Suspense } from "react";
-import Loading from "./loading";
 import { PokeCard } from "@/components/PokeCard";
+import { FetchPokemon } from "@/components/FetchPokemon";
+import Loading from "./loading";
 
 type Props = {
   params: {
@@ -12,28 +10,15 @@ type Props = {
   };
 };
 
-const PokemonDetailsPage = async ({ params }: Props) => {
+const PokemonDetailsPage = ({ params }: Props) => {
   const { name } = params;
-  const pokemonDetails: Pokemon | null = await fetchPokemonDetails(name);
-
-  if (!pokemonDetails) {
-    return notFound();
-  }
 
   return (
     <Modal>
       <PokeCard.Card>
+        <PokeCard.Title>{name}</PokeCard.Title>
         <Suspense fallback={<Loading />}>
-          <PokeCard.Title>{pokemonDetails.name}</PokeCard.Title>
-          <PokeCard.Image
-            src={pokemonDetails.sprites.front_default}
-            alt={pokemonDetails.name}
-          />
-          <div className="ds-flex flow-col-nw gap-xs">
-            <PokeCard.Info name="ID">{pokemonDetails.id}</PokeCard.Info>
-            <PokeCard.Info name="Height">{pokemonDetails.height}</PokeCard.Info>
-            <PokeCard.Info name="Weight">{pokemonDetails.weight}</PokeCard.Info>
-          </div>
+          <FetchPokemon name={name} />
         </Suspense>
       </PokeCard.Card>
     </Modal>

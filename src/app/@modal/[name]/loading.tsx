@@ -1,5 +1,5 @@
-const Loading = () => {
-  return "Carregando Pokemon...";
-};
+import { PokeCard } from "@/components/PokeCard";
 
-export default Loading;
+export default function Loading() {
+  return <PokeCard.Skeleton />;
+}
