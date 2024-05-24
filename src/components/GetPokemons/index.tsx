@@ -1,14 +1,14 @@
 import { PokemonListResults } from "@/type/pokemon";
 import React from "react";
 import { PokeList } from "../PokeList";
-import { getPokemons } from "@/lib/PokeAPI";
+import { testGetPokemons } from "@/lib/PokeAPI";
 
 export const GetPokemons = async () => {
-  const pokemons = await getPokemons({ offset: 0, limit: 10 });
+  const pokemons = await testGetPokemons();
 
   return (
     <>
-      {pokemons.results.map((pokemon: PokemonListResults) => (
+      {pokemons.map((pokemon: PokemonListResults) => (
         <PokeList.Item key={pokemon.name} href={`/${pokemon.name}`}>
           {pokemon.name}
         </PokeList.Item>

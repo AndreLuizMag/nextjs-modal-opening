@@ -1,4 +1,4 @@
-import Modal from "@/components/Modal";
+import ModalOld from "@/components/ModalOld";
 import { Suspense } from "react";
 import { PokeCard } from "@/components/PokeCard";
 import { FetchPokemon } from "@/components/FetchPokemon";
@@ -10,19 +10,19 @@ type Props = {
   };
 };
 
-const PokemonDetailsPage = ({ params }: Props) => {
+const Pokemon = ({ params }: Props) => {
   const { name } = params;
 
   return (
-    <Modal>
+    <ModalOld>
       <PokeCard.Card>
         <PokeCard.Title>{name}</PokeCard.Title>
         <Suspense fallback={<Loading />}>
           <FetchPokemon name={name} />
         </Suspense>
       </PokeCard.Card>
-    </Modal>
+    </ModalOld>
   );
 };
 
-export default PokemonDetailsPage;
+export default Pokemon;
